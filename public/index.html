@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111219">
+  <title>모여 — 화상회의</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/"><span class="logo" aria-hidden="true">◈</span> 모여</a>
+    <span id="status" role="status">화상회의</span>
+  </header>
+  <main id="lobby" class="lobby">
+    <section class="intro">
+      <span class="eyebrow">MOYEO MEET</span>
+      <h1 id="headline">바로 만나는<br>화상회의<span>.</span></h1>
+      <p id="intro-copy">회의를 열고 초대 링크를 공유하세요.</p>
+      <form id="join">
+        <label for="name">표시 이름</label>
+        <input id="name" maxlength="30" placeholder="이름을 입력하세요" required autocomplete="nickname">
+        <button class="primary" id="join-button">새 회의 시작 <span aria-hidden="true">↗</span></button>
+      </form>
+    </section>
+    <aside class="preview" aria-label="입장 전 화면">
+      <div class="portrait"><span id="initial"></span></div>
+      <span class="preview-label">카메라와 마이크는 꺼진 상태로 입장합니다</span>
+    </aside>
+  </main>
+  <main id="meeting" class="meeting" hidden>
+    <div class="room-heading">
+      <div><h1>화상회의</h1><span id="count"></span></div>
+      <p id="recording-status" role="status" hidden></p>
+      <button id="invite">초대 링크 복사 ↗</button>
+    </div>
+    <input id="invite-url" aria-label="초대 링크" readonly hidden>
+    <div class="workspace">
+      <section id="tiles" class="tiles" aria-label="참가자 영상"></section>
+      <aside class="chat" id="chat" hidden>
+        <h2>회의 채팅</h2>
+        <ol id="messages" aria-live="polite"></ol>
+        <form id="chat-form"><input id="message" maxlength="1000" aria-label="채팅 메시지" placeholder="메시지 입력" required><button aria-label="보내기">↑</button></form>
+      </aside>
+    </div>
+    <nav class="controls" aria-label="회의 제어">
+      <button id="mic" aria-pressed="false">마이크 켜기</button>
+      <button id="camera" aria-pressed="false">카메라 켜기</button>
+      <button id="share" aria-pressed="false">화면 공유</button>
+      <button id="chat-toggle" aria-controls="chat" aria-expanded="false">채팅</button>
+      <button id="record" aria-pressed="false">녹음 시작</button>
+      <button id="leave" class="danger">나가기</button>
+    </nav>
+    <div class="mic-check">
+      <label for="mic-level">내 마이크 입력</label>
+      <meter id="mic-level" min="0" max="100" value="0" aria-describedby="mic-feedback"></meter>
+      <span id="mic-feedback" role="status">마이크 꺼짐</span>
+    </div>
+  </main>
+  <section id="recording-results" class="recording-results" hidden>
+    <h2>회의 녹음 및 회의록</h2>
+    <div id="recording-files"></div>
+  </section>
+  <p id="notice" class="notice" role="status" hidden></p>
+</body>
+</html>
